@@ -1,9 +1,6 @@
-# Package Overview
-package_name: titanic_model
-
 # Data Files
 training_data_file: titanic.csv
-test_data_file: test.csv
+# test_data_file: test.csv
 
 # Variables
 # The variable we are attempting to predict (Survival)
@@ -65,4 +62,4 @@ random_state: 42
 # alogrithm parameters
 n_estimators: 150
 max_depth: 5
-
+max_features: 3

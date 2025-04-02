@@ -16,7 +16,7 @@ from titanic_model.processing.data_manager import pre_pipeline_preparation
 from titanic_model.processing.validation import validate_inputs
 
 
-pipeline_file_name = f"{config.app_config.pipeline_save_file}{_version}.pkl"
+pipeline_file_name = f"{config.app_config_.pipeline_save_file}{_version}.pkl"
 titanic_pipe= load_pipeline(file_name=pipeline_file_name)
 
 
@@ -26,7 +26,7 @@ def make_prediction(*,input_data:Union[pd.DataFrame, dict]) -> dict:
     validated_data, errors = validate_inputs(input_df=pd.DataFrame(input_data))
     
     #validated_data=validated_data.reindex(columns=['Pclass','Sex','Age','Fare', 'Embarked','FamilySize','Has_cabin','Title'])
-    validated_data=validated_data.reindex(columns=config.model_config.features)
+    validated_data=validated_data.reindex(columns=config.model_config_.features)
     #print(validated_data)
     results = {"predictions": None, "version": _version, "errors": errors}
     

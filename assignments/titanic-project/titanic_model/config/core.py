@@ -27,9 +27,7 @@ class AppConfig(BaseModel):
     Application-level config.
     """
 
-    package_name: str
     training_data_file: str
-    test_data_file: str
     pipeline_save_file: str
 
 
@@ -54,13 +52,14 @@ class ModelConfig(BaseModel):
     random_state: int
     n_estimators: int
     max_depth: int
+    max_features: int
 
 
 class Config(BaseModel):
     """Master config object."""
 
-    app_config: AppConfig
-    model_config: ModelConfig
+    app_config_: AppConfig
+    model_config_: ModelConfig
 
 
 def find_config_file() -> Path:
@@ -90,8 +89,8 @@ def create_and_validate_config(parsed_config: YAML = None) -> Config:
 
     # specify the data attribute from the strictyaml YAML type.
     _config = Config(
-        app_config=AppConfig(**parsed_config.data),
-        model_config=ModelConfig(**parsed_config.data),
+        app_config_=AppConfig(**parsed_config.data),
+        model_config_=ModelConfig(**parsed_config.data),
     )
 
     return _config

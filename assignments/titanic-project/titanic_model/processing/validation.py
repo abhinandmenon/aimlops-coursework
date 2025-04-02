@@ -18,7 +18,7 @@ def validate_inputs(*, input_df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[d
     """Check model inputs for unprocessable values."""
 
     pre_processed = pre_pipeline_preparation(data_frame=input_df)
-    validated_data = pre_processed[config.model_config.features].copy()
+    validated_data = pre_processed[config.model_config_.features].copy()
     errors = None
 
     try:
@@ -33,18 +33,14 @@ def validate_inputs(*, input_df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[d
 
 
 class DataInputSchema(BaseModel):
-    PassengerId:Optional[int]
     Pclass: Optional[int]
-    Name: Optional[str]
+    Title: Optional[str]
     Sex: Optional[str]
     Age: Optional[float]
-    SibSp: Optional[int]
-    Parch: Optional[int]
-    Ticket: Optional[str]
+    FamilySize: Optional[int]
     Fare: Optional[float]
-    Cabin: Optional[Union[str, float]]
+    Has_cabin: Optional[Union[str, float]]
     Embarked: Optional[str]
-    #Fare: Optional[int]
 
 
 class MultipleDataInputs(BaseModel):
