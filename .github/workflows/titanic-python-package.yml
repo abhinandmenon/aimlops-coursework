@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+defaults:
+  run:
+    working-directory: assignments/titanic-project/
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,9 +24,6 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Move to Titanic project folder
-      run: |
-        cd assignments/titanic-project/
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
