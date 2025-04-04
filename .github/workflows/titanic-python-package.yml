@@ -1,5 +1,5 @@
-# This workflow will install Python dependencies, run tests with a variety of Python versions.
-name: Python package
+# This workflow will install Python dependencies for the Titanic project, and run tests with a variety of Python versions.
+name: Titanic project Python package
 
 on:
   push:
@@ -20,13 +20,16 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Move to Titanic project folder
+      run: |
+        cd assignments/titanic-project/
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r assignments/titanic-project/requirements/test_requirements.txt
+        pip install -r requirements/test_requirements.txt
     - name: Train pipeline
       run: |
-        python project_with_test/titanic_model/train_pipeline.py
+        python titanic_model/train_pipeline.py
     - name: Test with pytest
       run: |
         pytest
