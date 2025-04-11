@@ -20,6 +20,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'assignments/titanic-project/**/*'
+      - '.github/workflows/titanic-project-ci.yml'
   
   workflow_dispatch:
 
