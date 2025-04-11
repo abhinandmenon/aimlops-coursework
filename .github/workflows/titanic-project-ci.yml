@@ -14,6 +14,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'assignments/titanic-project/**/*'
+      - '.github/workflows/titanic-project-ci.yml'
   
   pull_request:
     branches: [ "main" ]
@@ -47,7 +48,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: my-trained-pipeline
-        path: /home/runner/work/aimlops-coursework/aimlops-coursework/assignments/titanic_model/trained_models/*.pkl
+        path: assignments/titanic-project/titanic_model/trained_models/*.pkl
         retention-days: 1
 
   test:
