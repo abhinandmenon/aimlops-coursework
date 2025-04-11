@@ -64,7 +64,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         name: my-trained-pipeline
-        path: titanic_model/trained_models
+        path: assignments/titanic-project/titanic_model/trained_models
     - name: Install dependencies
       run: pip install -r requirements/test_requirements.txt
     - name: Test with pytest
@@ -80,10 +80,10 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.12'
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4
       with:
         name: my-trained-pipeline
-        path: titanic_model/trained_models
+        path: assignments/titanic-project/titanic_model/trained_models
     - name: Install dependencies
       run: pip install --upgrade build
     - name: Build package
@@ -104,7 +104,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         name: my-build-package
-        path: titanic_model_api
+        path: assignments/titanic-project/titanic_model_api
     - name: Login to Docker hub
       env:
         DOCKER_USER: ${{ vars.DOCKER_USER_NAME }}
