@@ -44,7 +44,7 @@ jobs:
       run: pip install -r requirements/requirements.txt
     - name: Train and save pipeline
       run: python titanic_model/train_pipeline.py
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: my-trained-pipeline
         path: titanic_model/trained_models/*.pkl
@@ -60,7 +60,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.12'
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
       with:
         name: my-trained-pipeline
         path: titanic_model/trained_models
@@ -99,8 +99,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Repo Checkout
-      uses: actions/checkout@v2
-    - uses: actions/download-artifact@v2
+      uses: actions/checkout@v4
+    - uses: actions/download-artifact@v4
       with:
         name: my-build-package
         path: titanic_model_api
