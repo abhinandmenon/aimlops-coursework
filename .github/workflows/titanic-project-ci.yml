@@ -88,10 +88,10 @@ jobs:
       run: pip install --upgrade build
     - name: Build package
       run: python -m build
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         name: my-build-package
-        path: dist/*.whl
+        path: assignments/titanic-project/dist/*.whl
         retention-days: 1
 
   push-image:
