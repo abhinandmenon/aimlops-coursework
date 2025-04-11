@@ -47,7 +47,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: my-trained-pipeline
-        path: titanic_model/trained_models/*.pkl
+        path: /home/runner/work/aimlops-coursework/aimlops-coursework/assignments/titanic_model/trained_models/*.pkl
         retention-days: 1
 
   test:
