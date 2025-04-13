@@ -1,0 +1,125 @@
+# Data Files
+training_data_file: bike-sharing-dataset.csv
+
+# Variables
+
+# The variable we are attempting to predict (Count)
+target: cnt
+
+pipeline_name: bikeshare_model
+pipeline_save_file: bikeshare_model_output_v
+
+features:      # input features to use 
+  - dteday
+  - season
+  - hr 
+  - holiday
+  - weekday
+  - workingday
+  - weathersit
+  - temp
+  - atemp
+  - hum
+  - windspeed
+  - casual
+  - registered
+  - cnt
+  - year
+  - month
+
+unused_columns:  # Features to drop before training
+  - dteday
+  - casual
+  - registered
+
+# Features inside processing pipeline
+
+date_var: dteday
+date_var_format: '%Y-%m-%d' # pandas to_datetime() format
+
+weekday_var: weekday
+
+year_var: year
+month_var: month
+season_var: season
+holiday_var: holiday
+weather_var: weathersit
+workingday_var: workingday
+hour_var: hr
+
+temp_var: temp
+atemp_var: atemp
+humidity_var: hum
+windspeed_var: windspeed
+
+year_mappings:
+  2011: 0
+  2012: 1
+
+month_mappings:
+  January: 0
+  February: 1
+  December: 2
+  March: 3
+  November: 4
+  April: 5
+  October: 6
+  May: 7
+  September: 8
+  June: 9
+  July: 10
+  August: 11
+
+season_mappings:
+  spring: 0
+  winter: 1
+  summer: 2
+  fall: 3
+
+holiday_mappings:
+  Yes: 0
+  No: 1
+
+weather_mappings:
+  'Heavy Rain': 0
+  'Light Rain': 1
+  'Mist': 2
+  'Clear': 3
+
+workingday_mappings:
+  No: 0
+  Yes: 1
+
+hour_mappings:
+  4am: 0
+  3am: 1
+  5am: 2
+  2am: 3
+  1am: 4
+  12am: 5
+  6am: 6
+  11pm: 7
+  10pm: 8
+  10am: 9
+  9pm: 10
+  11am: 11
+  7am: 12
+  9am: 13
+  8pm: 14
+  2pm: 15
+  1pm: 16
+  12pm: 17
+  3pm: 18
+  4pm: 19
+  7pm: 20
+  8am: 21
+  6pm: 22
+  5pm: 23
+
+
+# Set random seed for repeatability
+random_state: 42
+
+# RF regressor parameters
+n_estimators: 100
+max_depth: 10
