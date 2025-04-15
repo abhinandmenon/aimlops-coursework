@@ -26,8 +26,7 @@ def make_prediction(*, input_data: Union[pd.DataFrame, dict]) -> dict:
     results = {"predictions": None, "version": _version, "errors": errors}
     
     if not errors:
-        predictions = bikeshare_pipe.predict(validated_data)
-        results = {"predictions": predictions,"version": _version, "errors": errors}
+        results["predictions"] = bikeshare_pipe.predict(validated_data)
     
     print(results)
     return results
