@@ -6,6 +6,7 @@ sys.path.append(str(root))
 
 from typing import List, Optional, Tuple
 
+from datetime import datetime
 import numpy as np
 import pandas as pd
 from pydantic import BaseModel, ValidationError
@@ -33,22 +34,22 @@ def validate_inputs(*, input_df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[d
 
 
 class DataInputSchema(BaseModel):
-    Date: Optional[str]
-    Season: Optional[str]
-    Hour: Optional[str]
-    Holiday: Optional[str]
-    Weekday: Optional[str]
-    Workingday: Optional[str]
-    Weather: Optional[str]
-    Temp: Optional[float]
-    ATemp: Optional[float]
-    Humidity: Optional[float]
-    Windspeed: Optional[float]
-    Casual: Optional[int]
-    Registered: Optional[int]
-    Count: Optional[int]
-    Year: Optional[str]
-    Month: Optional[str]
+    dteday: Optional[datetime]
+    season: Optional[str]
+    hr: Optional[str]
+    holiday: Optional[str]
+    weekday: Optional[str]
+    workingday: Optional[str]
+    weathersit: Optional[str]
+    temp: Optional[float]
+    atemp: Optional[float]
+    hum: Optional[float]
+    windspeed: Optional[float]
+    casual: Optional[int]
+    registered: Optional[int]
+    cnt: Optional[int]
+    year: Optional[int]
+    month: Optional[str]
 
 
 class MultipleDataInputs(BaseModel):
