@@ -68,6 +68,7 @@ class ModelConfig(BaseModel):
     windspeed_var: str
 
     random_state: int
+    test_size: float
     n_estimators: int
     max_depth: int
 

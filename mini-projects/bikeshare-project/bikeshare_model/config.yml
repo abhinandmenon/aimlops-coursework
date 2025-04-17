@@ -21,16 +21,11 @@ features:      # input features to use
   - atemp
   - hum
   - windspeed
-  - casual
-  - registered
-  - cnt
   - year
   - month
 
 unused_columns:  # Features to drop before training
   - dteday
-  - casual
-  - registered
 
 # Features inside processing pipeline
 
@@ -119,6 +114,9 @@ hour_mappings:
 
 # Set random seed for repeatability
 random_state: 42
+
+# Test size split
+test_size: 0.20
 
 # RF regressor parameters
 n_estimators: 100

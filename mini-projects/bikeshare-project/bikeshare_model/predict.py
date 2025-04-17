@@ -35,6 +35,6 @@ if __name__ == "__main__":
 
     data_in={'dteday':['2012-11-05'], 'season':['winter'], 'hr':['6am'], 'holiday':['No'], 'weekday':['Mon'],
              'workingday':['Yes'], 'weathersit':['Mist'], 'temp':[6.10], 'atemp':[3.0014], 'hum':[49.0],
-             'windspeed':[19.0012], 'casual':[4], 'registered':[135], 'cnt':[139]}
+             'windspeed':[19.0012]}
 
     make_prediction(input_data=data_in)

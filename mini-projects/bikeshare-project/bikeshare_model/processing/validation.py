@@ -45,9 +45,6 @@ class DataInputSchema(BaseModel):
     atemp: Optional[float]
     hum: Optional[float]
     windspeed: Optional[float]
-    casual: Optional[int]
-    registered: Optional[int]
-    cnt: Optional[int]
     year: Optional[int]
     month: Optional[str]
 
