@@ -1,0 +1,11 @@
+uvicorn>=0.16.0,<0.18.0
+fastapi>=0.64.0,<1.0.0
+requests>=2.23.0,<2.24.0
+pydantic
+pydantic-settings
+
+# If locally copied whl file inside bikeshare_model_api then use given below
+bikeshare_model-0.0.1-py3-none-any.whl
+
+# If uploded your package in PyPI then use the given below
+#bikeshare-model==0.0.1
