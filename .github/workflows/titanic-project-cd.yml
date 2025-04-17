@@ -1,10 +1,10 @@
-# This workflow deploys the Titanic FastAPI app on the self-hosted EC2 Github Actions runner
+# This workflow deploys the Titanic FastAPI app on a self-hosted EC2 Github Actions runner
 
 
 name: Titanic project - Continuous Deployment
 
 
-# Only trigger, when the build workflow succeeded i.e. Titanic project - Continuous Integration & Delivery
+# Only trigger, when the build workflow succeeded i.e. 'Titanic project - Continuous Integration & Delivery'
 on:
 
   workflow_run:
