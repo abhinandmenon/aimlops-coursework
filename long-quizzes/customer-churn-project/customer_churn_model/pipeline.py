@@ -9,17 +9,15 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 
 from customer_churn_model.config.core import config
-from customer_churn_model.processing.features import NewFeaturesComputer, CustomOneHotEncoder, UnusedColumnsDropper
+from customer_churn_model.processing.features import RatioFeaturesComputer, CustomOneHotEncoder, UnusedColumnsDropper
 
 customer_churn_pipe = Pipeline([
 
     ##========== Compute additional numerical features ======##
-    ('new_features_computer', NewFeaturesComputer()),
+    ('new_features_computer', RatioFeaturesComputer(config.model_config_.ratio_features)),
 
-    ##========== One-hot encode categorical variables ======##
-    ('onehot_encode_Gender', CustomOneHotEncoder(config.model_config_.gender_var)),
-    ('onehot_encode_Subscription Type', CustomOneHotEncoder(config.model_config_.subscription_type_var)),
-    ('onehot_encode_Contract Length', CustomOneHotEncoder(config.model_config_.contract_length_var)),
+    ##========== One hot encode categorical variables ======##
+    ('one_hot_encode', CustomOneHotEncoder(config.model_config_.categorical_features)),
 
     ##========== Drop unused columns ======##
     ('drop_unused_columns', UnusedColumnsDropper(config.model_config_.unused_columns)),

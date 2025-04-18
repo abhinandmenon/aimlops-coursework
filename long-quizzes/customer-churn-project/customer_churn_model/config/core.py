@@ -41,9 +41,8 @@ class ModelConfig(BaseModel):
     features: List[str]
     unused_columns: List[str]
 
-    gender_var: str
-    subscription_type_var: str
-    contract_length_var: str
+    ratio_features: Dict[str, str]
+    categorical_features: List[str]
 
     random_state: int
     test_size: float

@@ -29,9 +29,17 @@ unused_columns:  # Features to drop before training
 
 # Features inside processing pipeline
 
-gender_var: Gender
-subscription_type_var: 'Subscription Type'
-contract_length_var: 'Contract Length'
+# Additional numerical features will be created as ratios of keys by respective values
+ratio_features:
+  Tenure: Age
+  'Support Calls': Tenure
+  'Payment Delay': Tenure
+
+# Categorical features to one-hot-encode
+categorical_features:
+  - Gender
+  - 'Subscription Type'
+  - 'Contract Length'
 
 
 # Set random seed for repeatability
