@@ -1,0 +1,33 @@
+# This workflow deploys the Customer Churn FastAPI app on a self-hosted EC2 Github Actions runner
+
+
+name: Customer Churn project - Continuous Deployment
+
+
+# Only trigger, when the build workflow succeeded i.e. 'Customer Churn project - Continuous Integration & Delivery'
+on:
+
+  workflow_run:
+    workflows: ["Customer Churn project - Continuous Integration & Delivery"]
+    types:
+      - completed
+  
+  workflow_dispatch:
+
+
+jobs:
+
+  deploy:
+
+    runs-on: self-hosted
+    steps:
+    - name: Pull Docker Image
+      env:
+        DOCKER_USER: ${{ vars.DOCKER_USER_NAME }}
+      run: sudo docker pull $DOCKER_USER/customer-churn-fastapi:latest
+    - name: Delete Old Docker Container
+      run: sudo docker rm -f customer-churn-fastapi-container || true
+    - name: Run Docker Container
+      env:
+        DOCKER_USER: ${{ vars.DOCKER_USER_NAME }}
+      run: sudo docker run -it -d -p 8001:8001 --name customer-churn-fastapi-container $DOCKER_USER/customer-churn-fastapi:latest
