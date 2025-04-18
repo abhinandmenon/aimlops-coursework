@@ -1,0 +1,8 @@
+uvicorn>=0.16.0,<0.18.0
+fastapi>=0.64.0,<1.0.0
+requests>=2.23.0,<2.24.0
+pydantic
+pydantic-settings
+
+# If locally copied whl file inside customer_churn_model_api then use given below
+customer_churn_model-0.0.1-py3-none-any.whl
