@@ -1,0 +1,123 @@
+# This workflow:
+# - trains a model using the Customer Churn dataset
+# - runs tests using the trained model
+# - builds a Python wheel package for the trained model
+# - creates and uploads a docker image for a FastAPI app that uses the trained model wheel
+
+
+name: Customer Churn project - Continuous Integration & Delivery
+
+
+on:
+
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'long-quizzes/customer-churn-project/**/*'
+      - '.github/workflows/customer-churn-project-ci.yml'
+  
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'long-quizzes/customer-churn-project/**/*'
+      - '.github/workflows/customer-churn-project-ci.yml'
+  
+  workflow_dispatch:
+
+
+defaults:
+
+  run:
+    working-directory: long-quizzes/customer-churn-project/
+
+
+jobs:
+
+  train:
+  
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.12'
+    - name: Install dependencies
+      run: pip install -r requirements/requirements.txt
+    - name: Train and save pipeline
+      run: python customer_churn_model/train_pipeline.py
+    - uses: actions/upload-artifact@v4
+      with:
+        name: my-trained-pipeline
+        path: long-quizzes/customer-churn-project/customer_churn_model/trained_models/*.pkl
+        retention-days: 1
+
+  test:
+  
+    needs: train
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.12'
+    - uses: actions/download-artifact@v4
+      with:
+        name: my-trained-pipeline
+        path: long-quizzes/customer-churn-project/customer_churn_model/trained_models
+    - name: Install dependencies
+      run: pip install -r requirements/test_requirements.txt
+    - name: Test with pytest
+      run: pytest
+
+  build:
+  
+    needs: [train, test]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.12'
+    - uses: actions/download-artifact@v4
+      with:
+        name: my-trained-pipeline
+        path: long-quizzes/customer-churn-project/customer_churn_model/trained_models
+    - name: Install dependencies
+      run: pip install --upgrade build
+    - name: Build package
+      run: python -m build
+    - uses: actions/upload-artifact@v4
+      with:
+        name: my-build-package
+        path: long-quizzes/customer-churn-project/dist/*.whl
+        retention-days: 1
+
+  push-image:
+  
+    needs: [train, test, build]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Repo Checkout
+      uses: actions/checkout@v4
+    - uses: actions/download-artifact@v4
+      with:
+        name: my-build-package
+        path: long-quizzes/customer-churn-project/customer_churn_model_api
+    - name: Login to Docker hub
+      env:
+        DOCKER_USER: ${{ vars.DOCKER_USER_NAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASS_TOKEN }}
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build the Docker image for Fastapi app
+      env:
+        DOCKER_USER: ${{ vars.DOCKER_USER_NAME }}
+      run: docker build . -f Dockerfile -t $DOCKER_USER/customer-churn-fastapi:latest
+    - name: Push the Docker Image
+      env:
+        DOCKER_USER: ${{ vars.DOCKER_USER_NAME }}
+      run: docker push $DOCKER_USER/customer-churn-fastapi
+    - name: Logout of Docker hub
+      run: docker logout
