@@ -1,0 +1,45 @@
+# Data Files
+training_data_file: customer_churn_dataset-training-master.csv
+
+
+# Variables
+
+# The variable we are attempting to predict (Churn)
+target: Churn
+
+pipeline_name: customer_churn_model
+pipeline_save_file: customer_churn_model_output_v
+
+features:      # input features to use 
+  - CustomerID
+  - Age
+  - Gender 
+  - Tenure
+  - 'Usage Frequency'
+  - 'Support Calls'
+  - 'Payment Delay'
+  - 'Subscription Type'
+  - 'Contract Length'
+  - 'Total Spend'
+  - 'Last Interaction'
+
+unused_columns:  # Features to drop before training
+  - CustomerID
+
+
+# Features inside processing pipeline
+
+gender_var: Gender
+subscription_type_var: 'Subscription Type'
+contract_length_var: 'Contract Length'
+
+
+# Set random seed for repeatability
+random_state: 42
+
+# Test size split
+test_size: 0.20
+
+# RF regressor parameters
+n_estimators: 100
+max_depth: 10
