@@ -35,6 +35,6 @@ if __name__ == "__main__":
 
     data_in={'CustomerID':[2], 'Age':[30], 'Gender':['Female'], 'Tenure':[39], 'Usage Frequency':[14],
              'Support Calls':[5], 'Payment Delay':[18], 'Subscription Type':['Standard'], 'Contract Length':['Annual'],
-             'Total Spend':[932], 'Last Interaction':[17]}
+             'Total Spend':[932.00], 'Last Interaction':[17]}
 
     make_prediction(input_data=data_in)

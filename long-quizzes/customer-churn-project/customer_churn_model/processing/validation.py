@@ -42,7 +42,7 @@ class DataInputSchema(BaseModel):
     Payment_Delay: Optional[int] = Field(alias='Payment Delay')
     Subscription_Type: Optional[str] = Field(alias='Subscription Type')
     Contract_Length: Optional[str] = Field(alias='Contract Length')
-    Total_Spend: Optional[int] = Field(alias='Total Spend')
+    Total_Spend: Optional[float] = Field(alias='Total Spend')
     Last_Interaction: Optional[int] = Field(alias='Last Interaction')
 
 

@@ -14,7 +14,7 @@ from customer_churn_model.processing.features import RatioFeaturesComputer, Cust
 customer_churn_pipe = Pipeline([
 
     ##========== Compute additional numerical features ======##
-    ('new_features_computer', RatioFeaturesComputer(config.model_config_.ratio_features)),
+    ('compute_ratio_features', RatioFeaturesComputer(config.model_config_.ratio_features)),
 
     ##========== One hot encode categorical variables ======##
     ('one_hot_encode', CustomOneHotEncoder(config.model_config_.categorical_features)),
