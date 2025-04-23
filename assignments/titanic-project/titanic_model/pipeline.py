@@ -5,7 +5,6 @@ parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 
 from titanic_model.config.core import config
@@ -27,8 +26,7 @@ titanic_pipe=Pipeline([
      # Transformation of age column
      ("age_transform", age_col_tfr(config.model_config_.age_var)
      ),
-    # scale
-     ("scaler", StandardScaler()),
+    # fit model
      ('model_rf', RandomForestClassifier(n_estimators=config.model_config_.n_estimators, 
                                          max_depth=config.model_config_.max_depth, 
                                          max_features=config.model_config_.max_features,
