@@ -30,4 +30,4 @@ jobs:
     - name: Run Docker Container
       env:
         DOCKER_USER: ${{ vars.DOCKER_USER_NAME }}
-      run: sudo docker run -it -d -p 8001:8001 --name customer-churn-fastapi-container $DOCKER_USER/customer-churn-fastapi:latest
+      run: sudo docker run -it -d -p 8003:8003 --name customer-churn-fastapi-container $DOCKER_USER/customer-churn-fastapi:latest
