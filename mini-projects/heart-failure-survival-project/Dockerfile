@@ -17,4 +17,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8004
 
 # start fastapi application
-CMD ["python", "app.py"]
+CMD ["python", "app/main.py"]
