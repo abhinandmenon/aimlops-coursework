@@ -1,0 +1,31 @@
+{
+    "family": "hfs-gradio-family",
+    "containerDefinitions": [
+        {
+            "name": "hfs-gradio-app",
+            "image": "653946085287.dkr.ecr.eu-north-1.amazonaws.com/aimlops/hfs-gradio",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 8004,
+                    "hostPort": 8004,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "systemControls": []
+        }
+    ],
+    "executionRoleArn": "arn:aws:iam::653946085287:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "volumes": [],
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072"
+}
