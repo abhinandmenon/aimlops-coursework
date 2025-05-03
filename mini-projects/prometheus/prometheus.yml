@@ -14,3 +14,11 @@ scrape_configs:
     scrape_timeout: 10s # override default value
     static_configs:
       - targets: ["humble-parakeet-g75xvgjgj52wr6q-9090.app.github.dev"] # The target here it's Prometheus itself.
+
+  - job_name: "bikeshare-app"
+    metrics_path: '/metrics'
+    scheme: 'https'
+    scrape_interval: 10s
+    scrape_timeout: 10s
+    static_configs:
+      - targets: ["humble-parakeet-g75xvgjgj52wr6q-8002.app.github.dev"]
