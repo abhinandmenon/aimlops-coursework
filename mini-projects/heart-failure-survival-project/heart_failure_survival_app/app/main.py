@@ -21,7 +21,7 @@ description = 'Predict survival of patient with heart failure, given their clini
 
 
 app = FastAPI(
-    title=title, openapi_url="0.0.1/openapi.json"
+    title=title, openapi_url="/0.0.1/openapi.json"
 )
 
 
