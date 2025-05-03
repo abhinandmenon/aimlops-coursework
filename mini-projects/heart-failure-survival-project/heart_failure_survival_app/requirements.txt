@@ -2,6 +2,8 @@ xgboost
 gradio
 joblib
 
+scikit-learn
+
 uvicorn>=0.16.0,<0.18.0
 fastapi>=0.64.0,<1.0.0
 prometheus-client
