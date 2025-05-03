@@ -12,6 +12,7 @@ RUN pip install --upgrade pip
 
 # install dependencies
 RUN pip install -r requirements.txt
+RUN rm *.whl
 
 # expose port for application
 EXPOSE 8002

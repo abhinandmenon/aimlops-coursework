@@ -52,9 +52,9 @@ example_input = {
 
 
 @api_router.post("/predict", response_model=schemas.PredictionResults, status_code=200)
-async def predict(input_data: schemas.MultipleDataInputs = Body(..., example=example_input)) -> Any:
+async def predict(input_data: schemas.MultipleDataInputs=Body(..., example=example_input)) -> Any:
     """
-    Rental count predictions with the bikeshare_model
+    Bike rental count prediction with the bikeshare_model
     """
 
     input_df = pd.DataFrame(jsonable_encoder(input_data.inputs))
@@ -65,4 +65,3 @@ async def predict(input_data: schemas.MultipleDataInputs = Body(..., example=exa
         raise HTTPException(status_code=400, detail=json.loads(results["errors"]))
 
     return results
-
