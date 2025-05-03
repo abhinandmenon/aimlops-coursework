@@ -39,7 +39,7 @@ def update_metrics():
     test_feat = test.drop('cnt', axis=1)
     test_cnt = test['cnt'].values
     test_pred = make_prediction(input_data=test_feat)['predictions']
-    r2 = r2_score(test_cnt, test_pred).round(3)
+    r2 = r2_score(test_cnt, test_pred)
     
     r2_metric.set(r2)
 
